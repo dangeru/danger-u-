@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div id="sitecorner">
-		     <img src="static/logo.png" alt="danger/u/">
+		     <a href="index.php"><img src="static/logo.png" alt="danger/u/"></a>
 		     <?php
 			try
 			{
