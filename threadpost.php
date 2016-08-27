@@ -25,7 +25,7 @@
 	fwrite($newthread_file, "||" . $body . "\n");
 	fclose($newthread_file);
 
-	header("Location: http://dangeru.rf.gd/index.php");
+	header("Location: http://dangeru.rf.gd/thread.php?=".(string)$latestthread);
 	die();	
 	}	
 	catch (Exception $e)
