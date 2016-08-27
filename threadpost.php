@@ -7,6 +7,8 @@
 	set_error_handler("customError");
 	$path = "thread/";
 	$threadlist = scandir($path,1);
+	natsort($threadlist);
+	$threadlist = array_reverse($threadlist, false);
 	$latestthread = (int)str_replace("thread/","",str_replace(".txt","",$path . $threadlist[0]));
 	$latestthread += 1;
 

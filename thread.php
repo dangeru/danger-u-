@@ -14,7 +14,6 @@
 			try
 			{
 				$threadlink = "thread/" . $id . ".txt";
-				echo $threadlink;
 				$thread = fopen($threadlink, "r");
 				while(!feof($thread)){
 					$line = fgets($thread);

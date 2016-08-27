@@ -8,6 +8,8 @@ if(is_dir($path))
 	echo "no";
 }
 
+natsort($threads);
+$threads = array_reverse($threads, false);
 ?>
 <!DOCTYPE HTML>
 <html>
