@@ -24,22 +24,22 @@
 					{
 						if(substr(str_replace("||","",$line), 0 , 4) === "&gt;")
 						{
-							echo '<div id="redtext">| ' . str_replace("||","",$line) . '</div>';
+							echo '<div id="redtext">|  ' . str_replace("||","",$line) . '</div>';
 						}
 						else
 						{	
-							echo '<div id="comment">| ' . str_replace("||","",$line) . '</div>';
+							echo '<div id="comment">|  ' . str_replace("||","",$line) . '</div>';
 						}
 					} else if(substr($line, 0, 1) === "#")
 					{
 						echo '<br>';
 						if(substr(str_replace("#","",$line), 0 , 4) === "&gt;")
 						{
-							echo '<div id="redtext">| ' . str_replace("#","",$line) . '</div>';
+							echo '<div id="redtext">|  ' . str_replace("#","",$line) . '</div>';
 						}
 						else
 						{	
-							echo '<div id="comment">| ' . str_replace("#","",$line) . '</div>';
+							echo '<div id="comment">|  ' . str_replace("#","",$line) . '</div>';
 						}
 					}	
 				}
