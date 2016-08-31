@@ -1,19 +1,25 @@
 body {
     background-color: #000000;
 }
-
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
+    image-rendering: -moz-crisp-edges;         /* Firefox */
+    image-rendering:   -o-crisp-edges;         /* Opera */
+    image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+    padding-bottom: 15px;   
 }
 
 @font-face {
-    font-family: 'VCR OSD Mono';
-	src: url('VCROSDMono.eot');
-	src: url('VCROSDMono.eot?#iefix') format('embedded-opentype'),
-		url('VCROSDMono.woff') format('woff'),
-		url('VCROSDMono.ttf') format('truetype');
+    font-family: 'Munro';
+	src: url('Munro.eot');
+	src: url('Munro.eot?#iefix') format('embedded-opentype'),
+		url('Munro.woff') format('woff'),
+		url('Munro.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -22,7 +28,8 @@ a {
     text-decoration: none;
     display: block;
     text-align: center;
-    font-family: 'VCR OSD MONO';
+    font-family: 'Munro';
+    font-size: 24px;
     color: #FFFFFF;
 }
 
@@ -35,9 +42,9 @@ a:hover {
 }
 
 #redtext {
-    color: #772C3B;
-    font-size: 15px;
-    font-family: 'VCR OSD MONO';
+    color: #ED145B;
+    font-size: 24px;
+    font-family: 'Munro';
 }
 
 div{
@@ -62,11 +69,13 @@ textarea {
 #title {
     font-size: 30px;
     color: #FFFFFF;
-    font-family: 'VCR OSD MONO';
+    font-family: 'Munro';
+    font-weight: 900;
+    padding-bottom: 15px;
 }
 
 #comment {
-    font-size: 15px;
+    font-size: 24px;
     color: #FFFFFF;
-    font-family: 'VCR OSD MONO';
+    font-family: 'Munro';
 }
