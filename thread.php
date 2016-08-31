@@ -6,6 +6,8 @@
 	<head>
 		<title>danger/u/ - dangerous opinions</title>
 		<link rel="stylesheet" type="text/css" href="static/dangeru.css">
+
+		<script>function refresh(){location.reload();}</script>
 	</head>
 	<body>
 		<div id="sitecorner">
@@ -51,6 +53,7 @@
 			}
 		     ?>
 		     <br><br>
+		     <a href="javascript:location.reload();">Refresh</a>
 		     <form name="comment" action="postcomment.php" method="post">
 		   	   <textarea rows="5" cols="50" style="display: block; margin-left: auto; margin-right: auto;" name="body"></textarea>
 			   <input type="text" name="id" value="<?php echo $id ?>" style="visibility: hidden;">
