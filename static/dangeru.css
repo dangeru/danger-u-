@@ -15,11 +15,11 @@ img {
 }
 
 @font-face {
-    font-family: 'Munro';
-	src: url('Munro.eot');
-	src: url('Munro.eot?#iefix') format('embedded-opentype'),
-		url('Munro.woff') format('woff'),
-		url('Munro.ttf') format('truetype');
+	font-family: 'VCR OSD Mono';
+	src: url('VCROSDMono.eot');
+	src: url('VCROSDMono.eot?#iefix') format('embedded-opentype'),
+		url('VCROSDMono.woff') format('woff'),
+		url('VCROSDMono.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -28,8 +28,8 @@ a {
     text-decoration: none;
     display: block;
     text-align: center;
-    font-family: 'Munro';
-    font-size: 24px;
+    font-family: 'VCR OSD Mono';
+    font-size: 18px;
     color: #FFFFFF;
 }
 
@@ -43,8 +43,8 @@ a:hover {
 
 #redtext {
     color: #ED145B;
-    font-size: 24px;
-    font-family: 'Munro';
+    font-size: 15px;
+    font-family: 'VCR OSD Mono';
 }
 
 div{
@@ -69,13 +69,13 @@ textarea {
 #title {
     font-size: 30px;
     color: #FFFFFF;
-    font-family: 'Munro';
+    font-family: 'VCR OSD Mono';
     font-weight: 900;
     padding-bottom: 15px;
 }
 
 #comment {
-    font-size: 24px;
+    font-size: 15px;
     color: #FFFFFF;
-    font-family: 'Munro';
+    font-family: 'VCR OSD Mono';
 }
