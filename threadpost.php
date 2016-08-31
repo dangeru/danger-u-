@@ -7,13 +7,17 @@
 	set_error_handler("customError");
 	$path = "thread/";
 	$threadlist = scandir($path,1);
-	natsort($threadlist);
+	natsort($threadlist);	
 	$threadlist = array_reverse($threadlist, false);
+	if($threadlist[0] === "index.html") //just in case someone has a index.html file in their thread folder
+	{
+		unset($threadlist[0]);
+		$threadlist = array_values($threadlist);
+	}
 	$latestthread = (int)str_replace("thread/","",str_replace(".txt","",$path . $threadlist[0]));
 	$latestthread += 1;
 
 	$filepath = $path . (string)$latestthread . ".txt";
-	
 	try
 	{
 	$newthread_file = fopen($filepath,"w+");
