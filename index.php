@@ -21,7 +21,7 @@ $threads = array_reverse($threads, false);
 
 <body>
 	<div id="sitecorner">
-	     <img src="static/logo.png" alt="danger/u/">
+	     <a href="javascript:location.reload();"><img src="static/logo.png" alt="danger/u/"></a>
 	     <a href="new.php" id="newthread">Start a new thread</a>
 	     <hr>
 	     <?php
