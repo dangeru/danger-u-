@@ -29,7 +29,25 @@
 	fwrite($newthread_file, "||" . $body . "\n");
 	fclose($newthread_file);
 
-	header("Location: http://dangeru.rf.gd/thread.php?=".(string)$latestthread);
+	$threadlist = scandir($path,1);
+	natsort($threadlist);	
+	$threadlist = array_reverse($threadlist, false);
+	if($threadlist[0] === "index.html") //just in case someone has a index.html file in their thread folder
+	{
+		unset($threadlist[0]);
+		$threadlist = array_values($threadlist);
+	}
+	
+	$threadstack = array();
+	for($i = 0; $i <= 25; $i++)
+	{
+		array_push($threadstack, $threadlist[$i]);
+	}		
+
+	file_put_contents("filelist.txt","");
+	file_put_contents("filelist.txt",implode(PHP_EOL,$threadstack));
+
+	header("Location: http://dangeru.us/thread.php?=".(string)$latestthread);
 	die();	
 	}	
 	catch (Exception $e)

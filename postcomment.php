@@ -8,7 +8,7 @@
 		fwrite($threadhandle, "#" . $body . "\n");
 		fclose($threadhandle);
 
-		header("Location: http://dangeru.rf.gd/thread.php?=" . $id);
+		header("Location: http://dangeru.us/thread.php?=" . $id);
 		die();	
 	}
 	catch(Exception $e)
