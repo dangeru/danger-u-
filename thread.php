@@ -7,7 +7,6 @@
 		<title>danger/u/ - dangerous opinions</title>
 		<link rel="stylesheet" type="text/css" href="static/dangeru.css">
 
-		<script>function refresh(){location.reload();}</script>
 	</head>
 	<body>
 		<div id="sitecorner">
@@ -19,12 +18,13 @@
 				$thread = fopen($threadlink, "r");
 				while(!feof($thread)){
 					$line = fgets($thread);
+					$line = htmlspecialchars_decode($line, ENT_QUOTES);
     					if(substr($line, 0, 3) === "|||")
 					{
 						echo '<div id="title">' . str_replace("|||","",$line) . '</div>';
 					} else if(substr($line, 0, 2) === "||")
 					{
-						if(substr(str_replace("||","",$line), 0 , 4) === "&gt;")
+						if(substr(str_replace("||","",$line), 0 , 1) === ">")
 						{
 							echo '<div id="redtext">|  ' . str_replace("||","",$line) . '</div>';
 						}
@@ -35,13 +35,13 @@
 					} else if(substr($line, 0, 1) === "#")
 					{
 						echo '<br>';
-						if(substr(str_replace("#","",$line), 0 , 4) === "&gt;")
+						if(substr(str_replace("#","",$line), 0 , 1) === ">")
 						{
-							echo '<div id="redtext">|  ' . str_replace("#","",$line) . '</div>';
+							echo '<div id="redtext">|  ' . str_replace("&","&#",str_replace("#","",$line)) . '</div>';
 						}
 						else
 						{	
-							echo '<div id="comment">|  ' . str_replace("#","",$line) . '</div>';
+							echo '<div id="comment">|  ' . str_replace("&","&#",str_replace("#","",$line)) . '</div>';
 						}
 					}	
 				}
