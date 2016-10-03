@@ -23,6 +23,7 @@ $threads = array_reverse($threads, false);
 	<div id="boardcontainer">
 	     <a id="boardid" href="http://dangeru.us/a">/a/</a> 
 	     <a id="boardid" href="http://dangeru.us/burg/">/burg/</a> 
+	     <a id="boardid" href="http://dangeru.us/cyb/">/cyb/</a> 
 	     <a id="boardid" href="http://dangeru.us/">/u/</a> 
 	     <a id="boardid" href="http://dangeru.us/new/">/new/</a> 
 	     <a id="boardid" href="http://dangeru.us/v/">/v/</a>
