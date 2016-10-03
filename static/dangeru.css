@@ -79,3 +79,20 @@ textarea {
     color: #FFFFFF;
     font-family: 'VCR OSD Mono';
 }
+
+#boardtitle {
+	text-align: center;
+	font-family: 'VCR OSD Mono';
+	color: white;
+	font-size: 19px;
+}
+
+#boardcontainer {
+	text-align: center;
+	width: auto;
+	
+}
+
+#boardid {
+	display: inline;
+}
