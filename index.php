@@ -20,6 +20,13 @@ $threads = array_reverse($threads, false);
 </head>
 
 <body>
+	<div id="boardcontainer">
+	     <a id="boardid" href="http://dangeru.us/a">/a/</a> 
+	     <a id="boardid" href="http://dangeru.us/burg/">/burg/</a> 
+	     <a id="boardid" href="http://dangeru.us/">/u/</a> 
+	     <a id="boardid" href="http://dangeru.us/new/">/new/</a> 
+	     <a id="boardid" href="http://dangeru.us/v/">/v/</a>
+	</div>
 	<div id="sitecorner">
 	     <a href="javascript:location.reload();"><img src="static/logo.png" alt="danger/u/"></a>
 	     <a href="new.php" id="newthread">Start a new thread</a>

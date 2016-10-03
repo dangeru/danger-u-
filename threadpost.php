@@ -15,37 +15,37 @@
 		$threadlist = array_values($threadlist);
 	}
 	$latestthread = (int)str_replace("thread/","",str_replace(".txt","",$path . $threadlist[0]));
-	$latestthread += 1;
+	
+	$title = $_POST['title'];	
 
+	$titlecheck = fopen($path . (string)$latestthread . ".txt", "r");
+	$pasttitle = fgets($titlecheck);
+	fclose($titlecheck);
+	if(strcasecmp($_POST['title'],str_replace("|||","",$pasttitle)) == -1)
+	{
+		header("Location: http://dangeru.us/new.php");
+		die("yes");
+	}	
+	else
+	{
+	}
+	$latestthread += 1;
 	$filepath = $path . (string)$latestthread . ".txt";
 	try
 	{
 	$newthread_file = fopen($filepath,"w+");
 	
 	$title = strip_tags($_POST['title']);
-	$body = htmlspecialchars(strip_tags($_POST['body']));
+	if(strlen($title) > 110)
+	{
+		header("Location: http://dangeru.us/new.php");
+		die();		
+	}	
+	$body = htmlspecialchars(strip_tags($_POST['body']), ENT_QUOTES, "UTF-8");
 
 	fwrite($newthread_file, "|||" . $title . "\n");	
 	fwrite($newthread_file, "||" . $body . "\n");
 	fclose($newthread_file);
-
-	$threadlist = scandir($path,1);
-	natsort($threadlist);	
-	$threadlist = array_reverse($threadlist, false);
-	if($threadlist[0] === "index.html") //just in case someone has a index.html file in their thread folder
-	{
-		unset($threadlist[0]);
-		$threadlist = array_values($threadlist);
-	}
-	
-	$threadstack = array();
-	for($i = 0; $i <= 25; $i++)
-	{
-		array_push($threadstack, $threadlist[$i]);
-	}		
-
-	file_put_contents("filelist.txt","");
-	file_put_contents("filelist.txt",implode(PHP_EOL,$threadstack));
 
 	header("Location: http://dangeru.us/thread.php?=".(string)$latestthread);
 	die();	
