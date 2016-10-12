@@ -19,7 +19,7 @@ for($i = 0; $i <= 35; $i++)
 			$f = fopen($path . $threads[$i], 'r');
 			$line = fgets($f);
 			fclose($f);
-			echo str_replace(".txt","",$threads[$i]).'#'.str_replace("|||","",$line);
+			echo str_replace(".txt","",$threads[$i]).'#'.str_replace("|||","",$line).PHP_EOL;
 		}				
 	}
 	catch(Exception $e)
