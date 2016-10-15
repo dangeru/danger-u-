@@ -1,6 +1,6 @@
 <?php
 	$id = $_POST['id'];
-	$body = htmlspecialchars(strip_tags($_POST['body']), ENT_QUOTES, "UTF-8");
+	$body = htmlspecialchars($_POST['body'], ENT_QUOTES, "UTF-8");
 
 	try
 	{
