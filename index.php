@@ -1,15 +1,23 @@
 <?php
+//path to the thread folder
 $path    = "thread/";
 if(is_dir($path))
 {
 	$threads = scandir($path,1);
+	natsort($threads);
+	$threads = array_reverse($threads, false);
 }else
 {
-	echo "no";
+	echo '<div id="redtext">The threads directory does not exist</div>';
 }
 
-natsort($threads);
-$threads = array_reverse($threads, false);
+//check if the start GET field isn't empty
+if (!empty($_GET['start'])) {
+	$startid = $_GET['start'];
+} //if it is assign 0
+else {
+	$startid = 0;
+}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -17,23 +25,33 @@ $threads = array_reverse($threads, false);
 <head>
 	<title>danger/u/ - dangerous opinions</title>
 	<link rel="stylesheet" type="text/css" href="static/dangeru.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="static/favicon.ico">
 </head>
 
 <body>
 	<div id="boardcontainer">
-	     <a id="boardid" href="http://dangeru.us/a">/a/</a> 
-	     <a id="boardid" href="http://dangeru.us/burg/">/burg/</a> 
-	     <a id="boardid" href="http://dangeru.us/cyb/">/cyb/</a> 
-	     <a id="boardid" href="http://dangeru.us/">/u/</a> 
-	     <a id="boardid" href="http://dangeru.us/new/">/new/</a> 
-	     <a id="boardid" href="http://dangeru.us/v/">/v/</a>
+	     <?php
+			 		$boards = "/home/vol8_3/rf.gd/rfgd_18794144/boards.dangeru.us/htdocs/";
+
+					$results = scandir($boards);
+					foreach ($results as $result) {
+    				if ($result === '.' or $result === '..') continue;
+						if ($result == "mobile") continue;
+    				if (is_dir($boards . '/' . $result)) {
+        			echo '<a href=http://boards.dangeru.us/' . $result . ' id="boardid">/' . $result . '/</a> ';
+    				}
+					}
+			 ?>
 	</div>
 	<div id="sitecorner">
-	     <a href="javascript:location.reload();"><img src="static/logo.png" alt="danger/u/"></a>
+	     <a href="javascript:location.reload();"><img src="static/logo.png" alt="danger/a/"></a>
 	     <a href="new.php" id="newthread">Start a new thread</a>
 	     <hr>
 	     <?php
-		for($i = 0; $i <= 35; $i++)
+			 $min = 0 + 35 * $startid;
+			 $max = 35 + 35 * $startid;
+		for($i = $min; $i <= $max; $i++)
 		{
 			try
 			{
@@ -43,14 +61,19 @@ $threads = array_reverse($threads, false);
 					$line = fgets($f);
 					fclose($f);
 					echo '<a href="thread.php?='.str_replace(".txt","",$threads[$i]).'">'.str_replace("|||","",$line).'</a>';
-				}				
+				}
 			}
 			catch(Exception $e)
 			{
-				
-			}				
-		}		
+
+			}
+		}
 	     ?>
+			 <div id="pagecount_container">
+				 <a href="index.php?start=0" id="pagecount">1</a>
+				 <a href="index.php?start=1" id="pagecount">2</a>
+				 <a href="index.php?start=2" id="pagecount">3</a>
+			</div>
 	</div>
 </body>
 

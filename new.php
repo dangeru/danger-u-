@@ -3,6 +3,7 @@
 <head>
 	<title>danger/u/ - dangerous opinions</title>
 	<link rel="stylesheet" type="text/css" href="static/dangeru.css">
+	<link rel="shortcut icon" href="static/favicon.ico">
 </head>
 
 <body>
