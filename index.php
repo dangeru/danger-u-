@@ -32,7 +32,7 @@ else {
 <body>
 	<div id="boardcontainer">
 	     <?php
-			 		$boards = "/home/vol8_3/rf.gd/rfgd_18794144/boards.dangeru.us/htdocs/";
+			 		$boards = "BOARDS DIRECTORY";
 
 					$results = scandir($boards);
 					foreach ($results as $result) {
