@@ -3,9 +3,8 @@
 $path    = "thread/";
 if(is_dir($path))
 {
-	$threads = scandir($path,1);
-	natsort($threads);
-	$threads = array_reverse($threads, false);
+	$files = glob($path . '*.txt');
+	usort($files, create_function('$a,$b', 'return filemtime($a)<filemtime($b);'));
 }else
 {
 	echo '<div id="redtext">The threads directory does not exist</div>';
@@ -32,7 +31,7 @@ else {
 <body>
 	<div id="boardcontainer">
 	     <?php
-			 		$boards = "BOARDS DIRECTORY";
+			 		$boards = "boards directory";
 
 					$results = scandir($boards);
 					foreach ($results as $result) {
@@ -55,17 +54,18 @@ else {
 		{
 			try
 			{
-				if(is_file($path . $threads[$i]))
+				if(is_file($files[$i]))
 				{
-					$f = fopen($path . $threads[$i], 'r');
+					$f = fopen($files[$i], 'r');
 					$line = fgets($f);
 					fclose($f);
-					echo '<a href="thread.php?='.str_replace(".txt","",$threads[$i]).'">'.str_replace("|||","",$line).'</a>';
+					$tmp = str_replace("thread/","",$files[$i]);
+					echo '<a href="thread.php?='.str_replace(".txt","",$tmp).'">'.str_replace("|||","",$line).'</a>';
 				}
 			}
 			catch(Exception $e)
 			{
-
+				echo $e;
 			}
 		}
 	     ?>
