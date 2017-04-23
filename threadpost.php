@@ -21,13 +21,23 @@
 	$titlecheck = fopen($path . (string)$latestthread . ".txt", "r");
 	$pasttitle = fgets($titlecheck);
 	fclose($titlecheck);
-	if(strcasecmp($_POST['title'],str_replace("|||","",$pasttitle)) == -1)
+	similar_text(trim(preg_replace('/\s\s+/', ' ', $pasttitle)), "|||" . $title, $percentage);
+	similar_text("|||" . $title, trim(preg_replace('/\s\s+/', ' ', $pasttitle)), $percentage1);
+	similar_text(strrev(trim(preg_replace('/\s\s+/', ' ', $pasttitle))), "|||" . $title, $percentage2);
+	similar_text(strrev("|||" . $title), trim(preg_replace('/\s\s+/', ' ', $pasttitle)), $percentage3);
+	similar_text(substr(trim(preg_replace('/\s\s+/', ' ', $pasttitle)), 0, 8), "|||" . $title, $percentage4);
+	similar_text(substr("|||" . $title, 0, 8), trim(preg_replace('/\s\s+/', ' ', $pasttitle)), $percentage5);
+	$percentage = ($percentage + $percentage1)/2;
+	$percentage2 = ($percentage2 + $percentage3)/2;
+	$percentage3 = ($percentage4 + $percentage5)/2;
+	if($percentage >= 65 || $percentage2 >= 65 || $percentage3 >= 65)
 	{
 		header("Location: new.php");
 		die("yes");
 	}
 	else
 	{
+
 	}
 	$latestthread += 1;
 	$filepath = $path . (string)$latestthread . ".txt";
@@ -36,7 +46,7 @@
 	$newthread_file = fopen($filepath,"w+");
 
 	$title = strip_tags($_POST['title']);
-	if(strlen($title) > 110)
+	if(strlen($title) > 47)
 	{
 		header("Location: new.php");
 		die();
