@@ -24,7 +24,7 @@ else {
 
 <head>
 	<title>danger/u/ - dangerous opinions</title>
-	<link rel="stylesheet" type="text/css" href="static/dangeru.css">
+	<link rel="stylesheet" type="text/css" href="../static/dangeru.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="static/favicon.ico">
 </head>
@@ -32,21 +32,29 @@ else {
 <body>
 	<div id="boardcontainer">
 	     <?php
-			 		$boards = "<the path to the directory with boards>";
+			 		$boards = "./";
 
 					$results = scandir($boards);
 					foreach ($results as $result) {
     				if ($result === '.' or $result === '..') continue;
 						if ($result == "mobile") continue;
+						if ($result == "static") continue;
 						if (strpos($result, 'well-known') !== false) continue;
     				if (is_dir($boards . '/' . $result)) {
-        			echo '<a href=http://boards.dangeru.us/' . $result . ' id="boardid">/' . $result . '/</a> ';
+        			echo '<a href=/' . $result . ' id="boardid">/' . $result . '/</a> ';
     				}
 					}
 			 ?>
 	</div>
 	<div id="sitecorner">
-	     <a href="javascript:location.reload();"><img src="static/logo.png" alt="danger/a/"></a>
+			<?php
+		 		$banners = scandir("./static/banners/<boardname>");
+		 		unset($banners[0]);
+		 		unset($banners[1]);
+		 		$banners = array_values($banners);
+		 		$randomfile = $banners[array_rand($banners)];
+				echo '<a href="javascript:location.reload();"><img src="../static/banners/<boardname>/' . $randomfile . '" alt="danger/u/"></a>';
+			?>
 	     <a href="new.php" id="newthread">Start a new thread</a>
 	     <hr>
 	     <?php
@@ -61,9 +69,13 @@ else {
 	 					$f = fopen($files[$i], 'r');
 	 					$line = fgets($f);
 	 					fclose($f);
-						if(preg_match("/(your|own|regex|rules|for|irritating|shitposters)/i", $line)) continue;
 	 					$tmp = str_replace("thread/","",$files[$i]);
 						$elapsedsincebump = time() - filemtime($files[$i]);
+						if(strlen($line) < 5)
+						{
+							$max++;
+							continue;
+						}
 						if($elapsedsincebump >= 86400) {echo '<a style="color: #7a7a7a;" href="thread.php?='.str_replace(".txt","",$tmp).'">'.str_replace("|||","",$line).'</a>';}
 						else {echo '<a href="thread.php?='.str_replace(".txt","",$tmp).'">'.str_replace("|||","",$line).'</a>';}
 
@@ -81,6 +93,9 @@ else {
 				 <a href="index.php?start=2" id="pagecount">3</a>
 			</div>
 	</div>
+	<footer id="comment" style="font-size: xx-small; text-align: center;">
+		&copy; 2016-<?php echo date("Y"); ?> prefetcher & github commiters. affiliated with <a href="http://re.wire.zone/" style="font-size: x-small; display: inline-block; ">re:wire</a>.
+	</footer>
 </body>
 
 </html>

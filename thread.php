@@ -5,13 +5,20 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="static/dangeru.css">
+		<link rel="stylesheet" type="text/css" href="../static/dangeru.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="static/favicon.ico">
 	</head>
 	<body>
 		<div id="sitecorner">
-		     <a href="index.php"><img src="static/logo.png" alt="danger/u/"></a>
+			<?php
+			 $banners = scandir("./static/banners/<boardname>");
+			 unset($banners[0]);
+			 unset($banners[1]);
+			 $banners = array_values($banners);
+			 $randomfile = $banners[array_rand($banners)];
+			 echo '<a href="index.php"><img src="../static/banners/<boardname>/' . $randomfile . '" alt="danger/u/"></a>';
+		 ?>
 		     <?php
 			try
 			{
@@ -20,7 +27,6 @@
 				$cnt = 0;
 				while(!feof($thread)){
 					$line = fgets($thread);
-					if(preg_match("/(.onion|.onion.to)/i", $line)) continue; //fucking torposters
 					$line = htmlspecialchars_decode($line, ENT_QUOTES);
     			if(substr($line, 0, 3) === "|||") //title
 					{
@@ -29,7 +35,7 @@
 					}
 					else if(substr($line, 0, 1) === "~") //[ADMIN:xxx]
 					{
-						if(substr($line,0,21) === "~##ADMIN:<yourname>##")
+						if(substr($line,0,21) === "~##ADMIN:(((you)))##")
 						{
 							echo '<br><div id="redtext">' . str_replace("~","",$line) . '</div>';
 						}
@@ -96,6 +102,7 @@
 						}
 					}
 				}
+
 				fclose($thread);
 			}
 			catch(Exception $e) //any errors

@@ -18,6 +18,18 @@
 
 	$title = $_POST['title'];
 
+	if(!isset($title))
+	{
+		header("Location: new.php");
+		die();
+	}
+
+	if(strlen($title) < 5)
+	{
+		header("Location: new.php");
+		die();
+	}
+
 	$titlecheck = fopen($path . (string)$latestthread . ".txt", "r");
 	$pasttitle = fgets($titlecheck);
 	fclose($titlecheck);
@@ -51,8 +63,13 @@
 		header("Location: new.php");
 		die();
 	}
-	$body = htmlspecialchars(strip_tags($_POST['body']), ENT_QUOTES, "UTF-8");
-
+	$body = preg_replace('/(&lt;|&gt;|&lt|&gt)/', '', $_POST['body']);
+	$body = htmlspecialchars(strip_tags($body), ENT_QUOTES, "UTF-8");
+	if(strlen($body) > 455)
+	{
+		fclose($newthread_file);
+		die();
+	}
 	fwrite($newthread_file, "|||" . $title . "\n");
 	fwrite($newthread_file, "||" . $body . "\n");
 	fclose($newthread_file);
